@@ -1,35 +1,54 @@
-function computerPlay() {
+function	computerPlay() {
 	const randomNumber = Math.floor(Math.random() * 3);
 	return randomNumber % 3 == 0 ? "Rock" : (randomNumber % 3 == 1 ? "Paper" : "Scissors");
 }
 
-function playRound(playerSelection, computerSelection) {
+function	playRound(playerSelection, computerSelection) {
 	if (playerSelection.toLowerCase() === "rock") {
 		if (computerSelection === "Scissors") {
-			return "You win! Rock beats Scissors";
+			console.log("You win this round! Rock beats Scissors");
+			return 1;
 		} else if (computerSelection === "Paper") {
-			return "You lose! Paper beats Rock";
+			console.log("You lose this round! Paper beats Rock");
+			return 2;
 		} else {
-			return "It's a draw";
+			console.log("This round is a draw");
+			return 0;
 		}
 	} else if (playerSelection.toLowerCase() === "scissors") {
 		if (computerSelection === "Rock") {
-			return "You lose! Rock beats Scissors";
+			console.log("You lose this round! Rock beats Scissors");
+			return 2;
 		} else if (computerSelection === "Paper") {
-			return "You win! Scissors beats Paper";
+			console.log("You win this round! Scissors beats Paper");
+			return 1;
 		} else {
-			return "It's a draw";
+			console.log("This round is a draw");
+			return 0;
 		}
 	} else {
 		if (computerSelection === "Rock") {
-			return "You win! Paper beats Rock";
+			console.log("You win this round! Paper beats Rock");
+			return 1;
 		} else if (computerSelection === "Scissors") {
-			return "You lose! Scissors beats Paper";
+			console.log("You lose this round! Scissors beats Paper");
+			return 2;
 		} else {
-			return "It's a draw";
+			console.log("This round is a draw");
+			return 0;
 		}
 	}
 }
 
-const playerSelection = "rock";
-console.log(playRound(playerSelection, computerPlay()));
+function	game() {
+	let	playerScore = 0;
+	let	computerScore = 0;
+
+	for (let i = 0; i < 5; i++) {
+		const result = playRound(prompt("Your choice: "), computerPlay());
+		result == 1 ? playerScore++ : (result == 2 ? computerScore++ : 0);
+	}
+	console.log(playerScore > computerScore ? "You won the game" : (playerScore == computerScore ? "It's a draw" : "You lost the game"));
+}
+
+game();
