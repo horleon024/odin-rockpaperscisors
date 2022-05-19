@@ -19,6 +19,7 @@ function restartGame(event) {
 	roundResult.textContent = "";
 	finalResult.textContent = "";
 	container.removeChild(restartButton);
+	buttons.forEach(button => button.addEventListener('click', playRound));
 }
 
 function	checkForWinner(scoreAfterRound, isPlayerScore) {
@@ -26,6 +27,7 @@ function	checkForWinner(scoreAfterRound, isPlayerScore) {
 	if (isPlayerScore) finalResult.textContent = "You won the game";
 	else finalResult.textContent = "You lost the game";
 
+	buttons.forEach(button => button.removeEventListener('click', playRound));
 	container.appendChild(restartButton);
 	restartButton.addEventListener('click', restartGame);	
 }
@@ -37,10 +39,10 @@ function	playRound(event) {
 	let isDraw = false;
 	if (playerSelection === "Rock") {
 		if (computerSelection === "Scissors") {
-			roundResult.textContent = "You win this round!Rock beats Scissors";
+			roundResult.textContent = "You win this round! Rock beats Scissors";
 			isPlayerWin = true;
 		} else if (computerSelection === "Paper") {
-			roundResult.textContent = "You lose this round!Paper beats Rock";
+			roundResult.textContent = "You lose this round! Paper beats Rock";
 			isPlayerWin = false;
 		} else {
 			roundResult.textContent = "This round is a draw";
@@ -48,10 +50,10 @@ function	playRound(event) {
 		}
 	} else if (playerSelection === "Scissors") {
 		if (computerSelection === "Rock") {
-			roundResult.textContent = "You lose this round!Rock beats Scissors";
+			roundResult.textContent = "You lose this round! Rock beats Scissors";
 			isPlayerWin = false;
 		} else if (computerSelection === "Paper") {
-			roundResult.textContent = "You win this round!Scissors beats Paper";
+			roundResult.textContent = "You win this round! Scissors beats Paper";
 			isPlayerWin = true;
 		} else {
 			roundResult.textContent = "This round is a draw";
@@ -59,10 +61,10 @@ function	playRound(event) {
 		}
 	} else {
 		if (computerSelection === "Rock") {
-			roundResult.textContent = "You win this round!Paper beats Rock";
+			roundResult.textContent = "You win this round! Paper beats Rock";
 			isPlayerWin = true;
 		} else if (computerSelection === "Scissors") {
-			roundResult.textContent = "You lose this round!Scissors beats Paper";
+			roundResult.textContent = "You lose this round! Scissors beats Paper";
 			isPlayerWin = false;
 		} else {
 			roundResult.textContent = "This round is a draw";
@@ -84,4 +86,3 @@ function	playRound(event) {
 }
 
 buttons.forEach(button => button.addEventListener('click', playRound));
-
