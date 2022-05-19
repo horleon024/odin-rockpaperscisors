@@ -3,8 +3,10 @@ function	computerPlay() {
 	return randomNumber % 3 == 0 ? "Rock" : (randomNumber % 3 == 1 ? "Paper" : "Scissors");
 }
 
-function	playRound(playerSelection, computerSelection) {
-	if (playerSelection.toLowerCase() === "rock") {
+function	playRound(event) {
+	const playerSelection = event.target.textContent;
+	const computerSelection = computerPlay();
+	if (playerSelection === "Rock") {
 		if (computerSelection === "Scissors") {
 			console.log("You win this round! Rock beats Scissors");
 			return 1;
@@ -15,7 +17,7 @@ function	playRound(playerSelection, computerSelection) {
 			console.log("This round is a draw");
 			return 0;
 		}
-	} else if (playerSelection.toLowerCase() === "scissors") {
+	} else if (playerSelection === "Scissors") {
 		if (computerSelection === "Rock") {
 			console.log("You lose this round! Rock beats Scissors");
 			return 2;
@@ -40,7 +42,7 @@ function	playRound(playerSelection, computerSelection) {
 	}
 }
 
-function	game() {
+/*function	game() {
 	let	playerScore = 0;
 	let	computerScore = 0;
 
@@ -49,6 +51,10 @@ function	game() {
 		result == 1 ? playerScore++ : (result == 2 ? computerScore++ : 0);
 	}
 	console.log(playerScore > computerScore ? "You won the game" : (playerScore == computerScore ? "It's a draw" : "You lost the game"));
-}
+}*/
 
-game();
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => button.addEventListener('click', playRound));
+
+//game();
