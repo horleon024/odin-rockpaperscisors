@@ -6,39 +6,54 @@ function	computerPlay() {
 function	playRound(event) {
 	const playerSelection = event.target.textContent;
 	const computerSelection = computerPlay();
+	const roundDiv = document.querySelector(".currentRound");
+	const playerScore = document.querySelector(".playerScore");
+	const computerScore = document.querySelector(".computerScore");
+	let isPlayerWin = true;
+	let isDraw = false;
 	if (playerSelection === "Rock") {
 		if (computerSelection === "Scissors") {
-			console.log("You win this round! Rock beats Scissors");
-			return 1;
+			roundDiv.textContent = "You win this round! Rock beats Scissors";
+			isPlayerWin = true;
 		} else if (computerSelection === "Paper") {
-			console.log("You lose this round! Paper beats Rock");
-			return 2;
+			roundDiv.textContent = "You lose this round! Paper beats Rock";
+			isPlayerWin = false;
 		} else {
-			console.log("This round is a draw");
-			return 0;
+			roundDiv.textContent = "This round is a draw";
+			isDraw = true;
 		}
 	} else if (playerSelection === "Scissors") {
 		if (computerSelection === "Rock") {
-			console.log("You lose this round! Rock beats Scissors");
-			return 2;
+			roundDiv.textContent = "You lose this round! Rock beats Scissors";
+			isPlayerWin = false;
 		} else if (computerSelection === "Paper") {
-			console.log("You win this round! Scissors beats Paper");
-			return 1;
+			roundDiv.textContent = "You win this round! Scissors beats Paper";
+			isPlayerWin = true;
 		} else {
-			console.log("This round is a draw");
-			return 0;
+			roundDiv.textContent = "This round is a draw";
+			isDraw = true;
 		}
 	} else {
 		if (computerSelection === "Rock") {
-			console.log("You win this round! Paper beats Rock");
-			return 1;
+			roundDiv.textContent = "You win this round! Paper beats Rock";
+			isPlayerWin = true;
 		} else if (computerSelection === "Scissors") {
-			console.log("You lose this round! Scissors beats Paper");
-			return 2;
+			roundDiv.textContent = "You lose this round! Scissors beats Paper";
+			isPlayerWin = false;
 		} else {
-			console.log("This round is a draw");
-			return 0;
+			roundDiv.textContent = "This round is a draw";
+			isDraw = true;
 		}
+	}
+	if (!isDraw && isPlayerWin) {
+		let scoreAfterRound = parseInt(playerScore.textContent);
+		scoreAfterRound++;
+		playerScore.textContent = scoreAfterRound;
+	}
+	else if (!isDraw && !isPlayerWin) {
+		let scoreAfterRound = parseInt(computerScore.textContent);
+		scoreAfterRound++;
+		computerScore.textContent = scoreAfterRound;
 	}
 }
 
